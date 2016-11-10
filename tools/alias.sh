@@ -1,0 +1,5 @@
+alias dkclimg='docker rmi $(docker images -f "dangling=true" -q)'
+alias dkclctn='docker rm -v $(docker ps -a -q -f status=exited)'
+alias dkc='docker-compose'
+alias dkimg='docker images'
+alias dk='docker'
