@@ -1,0 +1,16 @@
+
+EXTRA_ARGS='
+--label provider=virtualbox
+--insecure-registry 192.168.22.100:5000
+
+'
+CACERT=/var/lib/boot2docker/ca.pem
+DOCKER_HOST='-H tcp://0.0.0.0:2376'
+DOCKER_STORAGE=aufs
+DOCKER_TLS=auto
+SERVERKEY=/var/lib/boot2docker/server-key.pem
+SERVERCERT=/var/lib/boot2docker/server.pem
+
+ln -s /mnt/sda1/forge /
+mount /dev/sdb1
+filetool.sh -r sda1/tce
