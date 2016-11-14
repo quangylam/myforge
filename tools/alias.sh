@@ -1,18 +1,18 @@
 # ~/.bash_aliases
 
-alias dc="/usr/bin/docker-compose"
-alias drun="/bin/docker run"
-alias dimg="/bin/docker images"
+alias dc="docker-compose"
+alias drun="docker run"
+alias dimg="docker images"
 alias dps='docker ps --format "table {{.Label \"com.docker.compose.service\"}} {{.ID}} {{.Image}} {{.Command}} {{.CreatedAt}} {{.Status}} {{.Names}} {{.Ports}}" $*'
-alias dcp="/bin/docker cp"
-alias dexec="/bin/docker exec -it"
-alias drm="/bin/docker rm"
-alias drmi="/bin/docker rmi"
-alias dstop="/bin/docker stop"
-alias dstart="/bin/docker start"
-alias dexec="/bin/docker exec"
-alias dbuild="/bin/docker build"
-alias dgc='/bin/docker rmi $(/bin/docker images -q -f dangling=true)'
+alias dcp="docker cp"
+alias dexec="docker exec -it"
+alias drm="docker rm"
+alias drmi="docker rmi"
+alias dstop="docker stop"
+alias dstart="docker start"
+alias dexec="docker exec"
+alias dbuild="docker build"
+alias dgc='docker rmi $(docker images -q -f dangling=true)'
 alias settls='. /depot/forge/settls $1'
 alias unsettls='. /depot/forge/unsettls'
 alias gitlogpath='git log --follow --all -p $*'
