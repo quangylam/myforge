@@ -1,9 +1,22 @@
-    version: '2'
-    services:
-      dnsmasq:
-        build: dnsmasq
-        image: dnsmasq
-        ports:
-         - "53:53"
-        volumes:
-         - /forge/myforge/dnsmasq/dnsmasq.hosts:/dnsmasq.hosts
+version: '2'
+
+services:
+  dnsmasq:
+    build: 
+      context: dnsmasq
+      args:
+        env: $ENV
+        secure_pass: $SECURE_PASS
+        dnsmasq_ver: $DNSMASQ_VER
+    image: dnsmasq:$DNSMASQ_VER
+    hostname: dnsmasq
+    container_name: dnsmasq
+    ports:
+      - "53:5353"
+      - "53/udp:5353/udp"
+    volumes:
+      - /forge/myforge/dnsmasq/data/dnsmasq.conf:/etc/dnsmasq.conf
+      - /forge/myforge/dnsmasq/data/dnsmasq_static_hosts.conf:/etc/dnsmasq_static_hosts.conf
+    restart: always
+
+
