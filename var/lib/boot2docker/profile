@@ -11,7 +11,6 @@ DOCKER_TLS=auto
 SERVERKEY=/var/lib/boot2docker/server-key.pem
 SERVERCERT=/var/lib/boot2docker/server.pem
 
-[ -h /forge ] || ln -s /mnt/sda1/forge /
 [ -d "/mnt/sdb1/lost+found" ] || mount /mnt/sdb1
 
 cp -p /etc/resolv.conf /etc/resolv.conf.0
