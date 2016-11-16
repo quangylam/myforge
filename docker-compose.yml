@@ -47,3 +47,5 @@ services:
     volumes:
         - /mnt/sda1/myforge/gogs/data:/data
     restart: always
+    depends_on:
+      - postgres
