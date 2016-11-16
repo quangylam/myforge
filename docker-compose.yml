@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  dnsmasq:
+  dns:
     build: 
       context: dnsmasq
       args:
@@ -12,8 +12,7 @@ services:
     hostname: dnsmasq
     container_name: dnsmasq
     ports:
-      - "53:5353"
-      - "53/udp:5353/udp"
+      - "53:5353/udp"
     volumes:
       - /mnt/sda1/myforge/dnsmasq/data/dnsmasq.conf:/etc/dnsmasq.conf
       - /mnt/sda1/myforge/dnsmasq/data/dnsmasq_static_hosts.conf:/etc/dnsmasq_static_hosts.conf
