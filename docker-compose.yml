@@ -2,6 +2,7 @@ version: '2'
 
 services:
   dns:
+    restart: always
     build: 
       context: dnsmasq
     image: dnsmasq:latest
@@ -12,10 +13,11 @@ services:
     volumes:
       - /mnt/sda1/myforge/dnsmasq/data/dnsmasq.conf:/etc/dnsmasq.conf
       - /mnt/sda1/myforge/dnsmasq/data/dnsmasq_static_hosts.conf:/etc/dnsmasq_static_hosts.conf
-    restart: always
-
+    networks:
+      - forge
 
   nexus:
+    restart: always
     image: sonatype/nexus3:latest
     hostname: nexus
     container_name: nexus
@@ -24,20 +26,23 @@ services:
         - "5000:5000"
     volumes:
         - /mnt/sda1/myforge/nexus/data:/nexus-data
-    restart: always
+    networks:
+      - forge
 
   postgres:
     restart: always
     image: postgres
     hostname: postgres
     container_name: postgres
-    environment:
     ports:
       - '5432:5432'
     volumes:
       - /mnt/sda1/myforge/postgresql/data:/var/lib/postgresql/data
+    networks:
+      - forge
 
   gogs:
+    restart: always
     image: gogs/gogs
     hostname: gogs
     container_name: gogs
@@ -46,6 +51,30 @@ services:
         - "10080:3000"
     volumes:
         - /mnt/sda1/myforge/gogs/data:/data
-    restart: always
     depends_on:
       - postgres
+    networks:
+      - forge
+
+#  gitlab:
+#    image: gitlab/gitlab-ce:latest
+#    restart: always
+#    ports:
+#      - "8080:80"
+#    volumes:
+#      - /mnt/sda1/myforge/gitlab/config:/etc/gitlab
+#      - /mnt/sda1/myforge/gitlab/data:/var/opt/gitlab
+#      - /mnt/sda1/myforge/gitlab/logs:/var/log/gitlab
+#      - /mnt/sda1/myforge/gitlab/lfs-objects:/mnt/storage/lfs-objects
+#    container_name: gitlab
+#    hostname: gitlab.mydemo.net
+#    environment:
+#      - GITLAB_OMNIBUS_CONFIG="gitlab_rails['lfs_enabled'] = true; nginx['client_max_body_size'] = '2500m';"
+#      - RAILS_ENV="production"
+#    networks:
+#      - forge
+
+networks:
+  forge:
+    driver: bridge
+
