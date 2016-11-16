@@ -1,12 +1,7 @@
 FROM centos
 MAINTAINER Quang LAM quangylam@gmail.com
 
-ARG env
-ARG secure_pass
-ARG dnsmasq_ver
-
-
-RUN yum -y install bash network-tools dnsmasq
+RUN yum -y install dnsmasq
 
 VOLUME /etc/dnsmasq.d
 

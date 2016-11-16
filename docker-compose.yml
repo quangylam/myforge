@@ -4,11 +4,7 @@ services:
   dns:
     build: 
       context: dnsmasq
-      args:
-        env: $ENV
-        secure_pass: $SECURE_PASS
-        dnsmasq_ver: $DNSMASQ_VER
-    image: dnsmasq:$DNSMASQ_VER
+    image: dnsmasq:latest
     hostname: dnsmasq
     container_name: dnsmasq
     ports:
