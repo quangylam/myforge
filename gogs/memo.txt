@@ -1,0 +1,3 @@
+gogsadm
+gogsadm
+gogsdb
