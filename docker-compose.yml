@@ -25,3 +25,25 @@ services:
     volumes:
         - /mnt/sda1/myforge/nexus/data:/nexus-data
     restart: always
+
+  postgres:
+    restart: always
+    image: postgres
+    hostname: postgres
+    container_name: postgres
+    environment:
+    ports:
+      - '5432:5432'
+    volumes:
+      - /mnt/sda1/myforge/postgresql/data:/var/lib/postgresql/data
+
+  gogs:
+    image: gogs/gogs
+    hostname: gogs
+    container_name: gogs
+    ports:
+        - "10022:22"
+        - "10080:3000"
+    volumes:
+        - /mnt/sda1/myforge/gogs/data:/data
+    restart: always
