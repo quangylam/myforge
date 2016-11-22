@@ -16,6 +16,20 @@ services:
     networks:
       - forge
 
+  nginx:
+    restart: always
+    image: nginx:latest
+    hostname: nginx
+    container_name: nginx
+    ports:
+        - "80:80"
+        - "443:443"
+    volumes:
+        - /mnt/sda1/myforge/nginx/nginx.conf:/etc/nginx.conf
+        - /mnt/sda1/myforge/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - forge
+
   nexus:
     restart: always
     image: sonatype/nexus3:latest
