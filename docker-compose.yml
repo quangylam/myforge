@@ -96,12 +96,15 @@ services:
         - "49001:8080"
     volumes:
         - /app/myforge/jenkins/data:/var/jenkins_home:z
+        - /usr/bin/docker:/usr/bin/docker
+        - /usr/local/bin/docker-compose:/usr/bin/docker-compose
     networks:
       - forge
 
   jenkinsslave:
     build: jenkins-slave
-
+    ports:
+        - "0.0.0.0:222:22"
 networks:
   forge:
     driver: bridge
