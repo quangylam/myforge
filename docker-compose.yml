@@ -18,6 +18,8 @@ services:
 
   nginx:
     restart: always
+    build: 
+      context: nginx
     image: nginx:latest
     hostname: nginx
     container_name: nginx
@@ -27,6 +29,8 @@ services:
     volumes:
         - /app/myforge/nginx/nginx.conf:/etc/nginx.conf
         - /app/myforge/nginx/conf.d:/etc/nginx/conf.d
+    links:
+      - gitlab
     networks:
       - forge
 
