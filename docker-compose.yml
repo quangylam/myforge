@@ -17,7 +17,7 @@ services:
       - forge
 
   nginx:
-    restart: always
+#    restart: always
     build: 
       context: nginx
     image: nginx:latest
@@ -31,11 +31,14 @@ services:
         - /app/myforge/nginx/conf.d:/etc/nginx/conf.d
     links:
       - gitlab
+#      - gogs
+#      - nexus
+#      - jenkins
     networks:
       - forge
 
   nexus:
-    restart: always
+#    restart: always
     image: sonatype/nexus3:latest
     hostname: nexus
     container_name: nexus
@@ -48,7 +51,7 @@ services:
       - forge
 
   postgres:
-    restart: always
+#    restart: always
     image: postgres
     hostname: postgres
     container_name: postgres
@@ -60,7 +63,7 @@ services:
       - forge
 
   gogs:
-    restart: always
+#    restart: always
     image: gogs/gogs
     hostname: gogs
     container_name: gogs
@@ -76,7 +79,7 @@ services:
 
   gitlab:
     image: gitlab/gitlab-ce:latest
-    restart: always
+#    restart: always
     ports:
       - "8080:80"
     volumes:
