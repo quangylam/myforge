@@ -6,3 +6,4 @@ ssl/ca-key.pem
 ssl/ca.pem
 ssl/ca.srl
 jenkins/data/
+nginx/conf.d

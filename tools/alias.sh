@@ -13,10 +13,12 @@ alias dstart="docker start"
 alias dexec="docker exec"
 alias dbuild="docker build"
 alias dgc='docker rmi $(docker images -q -f dangling=true)'
+alias setdockerhost='. /depot/forge/setdockerhost $1'
 alias settls='. /depot/forge/settls $1'
 alias unsettls='. /depot/forge/unsettls'
 alias gitlogpath='git log --follow --all -p $*'
 alias gitlist='git show --pretty="format:" --name-only $1'
 alias gitlog='git log --graph --decorate --oneline'
 alias gitco='git checkout'
-
+alias gitlisttag='git log --tags --simplify-by-decoration --pretty="format:%ci %d"'
+alias gitshlog='git shortlog -sn'

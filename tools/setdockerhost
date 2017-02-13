@@ -1,0 +1,13 @@
+#!/bin/sh
+VM_ALIAS=${1-:build}
+SCRIPT_DIR=/depot/forge
+HOST=`grep $VM_ALIAS $SCRIPT_DIR/servers.cfg|cut -d' ' -f1`
+if [ -n "$HOST" ];then
+ DOCKER_HOST=tcp://$HOST:2376
+else
+ echo "Unknown host $1 --> set default DOCKER_HOST to default"
+ DOCKER_HOST=tcp://default:2376
+fi
+export DOCKER_HOST
+echo export DOCKER_HOST=$DOCKER_HOST
+alias docker 2>/dev/null && unalias docker

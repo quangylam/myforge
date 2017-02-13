@@ -17,7 +17,7 @@ services:
       - forge
 
   nginx:
-#    restart: always
+    restart: always
     build: 
       context: nginx
     image: nginx:latest
@@ -33,7 +33,7 @@ services:
       - gitlab
 #      - gogs
 #      - nexus
-#      - jenkins
+      - jenkins
     networks:
       - forge
 
@@ -79,7 +79,7 @@ services:
 
   gitlab:
     image: gitlab/gitlab-ce:latest
-#    restart: always
+    restart: always
     ports:
       - "8080:80"
     volumes:
@@ -97,6 +97,7 @@ services:
 
   jenkins:
     image: jenkins
+    restart: always
     hostname: jenkins
     container_name: jenkins
     ports:
