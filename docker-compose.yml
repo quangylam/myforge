@@ -81,6 +81,7 @@ services:
     image: gitlab/gitlab-ce:latest
     restart: always
     ports:
+      - "8022:22"
       - "8080:80"
     volumes:
       - /app/myforge/gitlab/config:/etc/gitlab
@@ -88,7 +89,7 @@ services:
       - /app/myforge/gitlab/logs:/var/log/gitlab
       - /app/myforge/gitlab/lfs-objects:/mnt/storage/lfs-objects
     container_name: gitlab
-    hostname: gitlab.nice.dmo
+    hostname: gitlab.quangshiba.net
     environment:
       - GITLAB_OMNIBUS_CONFIG="gitlab_rails['lfs_enabled'] = true; nginx['client_max_body_size'] = '2500m';"
       - RAILS_ENV="production"
