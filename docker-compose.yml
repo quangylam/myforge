@@ -96,6 +96,22 @@ services:
     networks:
       - forge
 
+  runner:
+    image: gitlab/gitlab-runner:latest
+    restart: always
+    container_name: runner
+    extra_hosts:
+      - git.auxylium.toulouse.it.atos.net:192.168.243.88
+    volumes:
+      - /app/myforge/runner:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - /usr/share/zoneinfo:/usr/share/zoneinfo:ro
+      - /home/quang/.docker/config.json:/root/.docker/config.json
+    environment:
+      - LANG=en_US.UTF-8
+      - LANGUAGE=en_US.UTF-8
+
   jenkins:
     image: jenkins
     restart: always
